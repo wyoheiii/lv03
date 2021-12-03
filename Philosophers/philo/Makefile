@@ -1,4 +1,4 @@
-SRCS = main.c
+SRCS = main.c util.c av_check.c philo_init.c god_free.c
 SRCSD = ./srcs/
 
 ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
@@ -6,12 +6,13 @@ OBJS		=   $(ADDSRCS:.c=.o)
 CC				= gcc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -I.
+PFLAGS			= -g -pthread
 NAME			= philo
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+				$(CC) $(PFLAGS) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean:
 				$(RM) $(OBJS)
