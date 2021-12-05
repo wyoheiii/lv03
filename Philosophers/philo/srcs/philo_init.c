@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:25:54 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/03 16:56:47 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/04 00:25:12 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ static bool philo_init(t_data **data)
     if((*data)->philo == NULL)
         return(print_error("malloc error\n"));
     i = 0;
-    while(i <= (*data)->philo_num)
+    while(i < (*data)->philo_num)
     {
-        (*data)->philo[i].num = 0;
+        (*data)->philo[i].num = i + 1;
         (*data)->philo[i].start_time = 0;
-        (*data)->philo[i].l_fork = 0;
-        (*data)->philo[i].r_fork = 0;
+        (*data)->philo[i].l_fork = i;
+        (*data)->philo[i].r_fork = (i + 1); // (i + 1) % philo_num?
+        
         i++;
     }
     return(true);

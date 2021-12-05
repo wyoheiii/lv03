@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 18:52:41 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/03 17:11:32 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/04 22:50:33 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main (int ac, char **av)
             return (FAILURE);
         if (!init(ac, av, &data))
             return (FAILURE);
-        if (philooooooooooooooo)
+        if ()
         return(SUCCESS);
     }
     //god_free(&data);

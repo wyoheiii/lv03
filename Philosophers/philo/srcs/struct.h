@@ -5,9 +5,9 @@
 typedef struct s_philo
 {
     int num;
-    int start_time;
-    bool l_fork;
-    bool r_fork;
+    size_t start_time;
+    int l_fork;
+    int r_fork;
     pthread_t thread;
 
 } t_philo;

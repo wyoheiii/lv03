@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:45:32 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/01 22:10:25 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/05 00:01:38 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,16 @@ size_t	ft_strlen(const char	*s)
 	return (i);
 }
 
-int	atooooi(const char	*str)
+size_t get_time(void)
+{
+	struct timeval time;
+
+	if(gettimeofday(&time, NULL) == -1)
+		return(print_error("gettimeofday error\n"));
+	return(time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+size_t	atooooi(const char	*str)
 {
 	size_t		i;
 	long long	check;
@@ -41,5 +50,5 @@ int	atooooi(const char	*str)
 			return(FAILURE);
 		i++;
 	}
-	return ((int)(total * check));
+	return ((size_t)(total));
 }
