@@ -2,6 +2,7 @@
 # define STRUCT_H
 # include <pthread.h>
 
+typedef struct s_data t_data;
 typedef struct s_philo
 {
     int num;
@@ -9,6 +10,7 @@ typedef struct s_philo
     int l_fork;
     int r_fork;
     pthread_t thread;
+    t_data *d;
 
 } t_philo;
 typedef struct s_data

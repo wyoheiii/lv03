@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: watanabeyouhei <watanabeyouhei@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 18:52:41 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/04 22:50:33 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/05 17:15:24 by watanabeyou      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 //ac avチェック マイナスか
 //av[1]哲学者数=フォーク数 
 //av[2] 死ぬまでの時間(ms) 1ms 0.001 食事開始時間orシミュレーション開始時間
-//av[3]食事する時間(ms)  
+//av[3]食事する時間(ms)
 //av[4]睡眠する時間(ms)
 //av[5]プログラムを終了する食事回数
 int main (int ac, char **av)
 {
-    t_data *data;
+    t_data data;
     
     if(ac == 5 || ac == 6)
     {
@@ -27,7 +27,8 @@ int main (int ac, char **av)
             return (FAILURE);
         if (!init(ac, av, &data))
             return (FAILURE);
-        if ()
+        if (!thread_main(&data))
+            return (FAILURE);
         return(SUCCESS);
     }
     //god_free(&data);

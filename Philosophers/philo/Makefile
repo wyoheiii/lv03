@@ -1,4 +1,5 @@
-SRCS = main.c util.c av_check.c philo_init.c god_free.c
+SRCS = main.c util.c av_check.c philo_init.c god_free.c pthread_main.c \
+		philo_action.c
 SRCSD = ./srcs/
 
 ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
