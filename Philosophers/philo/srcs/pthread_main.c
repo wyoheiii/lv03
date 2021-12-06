@@ -1,4 +1,13 @@
 #include "philo.h"
+bool check_eat_count(t_philo *philo)
+{
+    size_T i;
+    i = 0;
+    while(i < philo->d->philo_num)
+    {
+        if(philo)
+    }
+}
 void *philo_table(void *p)
 {
     //飯　死ぬ　寝る　考える　ゲットタイムつける
@@ -11,16 +20,18 @@ void *philo_table(void *p)
     {
         //if(!philo_eat_beefbowl(philo))
         //    break;
+        if(!check_eat_count(philo))
+            break;
         if(!philo_sleep(philo))
             break;
-         if(philo_think(philo))
+         if(!philo_think(philo))
             break;
     }
     return (NULL);
 }
 bool thread_main(t_data *data)
 {
-    int i;
+    size_t i;
     i = 0;
     
     while(i < data->philo_num)

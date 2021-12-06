@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   god_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: watanabeyouhei <watanabeyouhei@student.    +#+  +:+       +#+        */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:43:23 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/05 15:36:28 by watanabeyou      ###   ########.fr       */
+/*   Updated: 2021/12/06 23:12:06 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void god_free(t_data *data)
 {
     if(data->philo != NULL)
         free(data->philo);
+    if(data->fork != NULL)
+        free(data->fork);
     //free(*data);
     
 }

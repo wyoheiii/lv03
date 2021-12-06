@@ -17,7 +17,7 @@ bool philo_sleep(t_philo    *philo)
     if(time == false)
         return(false);
     printf("%ld %d is sleeping\n",time, philo->num);
-    usleep(philo->d->sleep_time * 1000);
+    usleep(philo->d->sleep_time);
     return(true);
 }
 

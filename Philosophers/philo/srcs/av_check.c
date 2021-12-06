@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:45:48 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/03 15:40:07 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/06 16:21:34 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,7 @@ static bool	check_args(char	*str)
 	if (ft_strlen(str) > 11)
 		return(false);
 	if (str[0] == '-')
-	{
-		i++;
-		if (!(str[1] >= '1' && str[1] <= '9'))
 			return(false);
-	}
 	if (str[0] == '0' && str[1] != '\0')
 		return(false);
 	while (str[i] != '\0')
