@@ -3,7 +3,7 @@
 
 # define SUCCESS 1
 # define FAILURE 0
-
+#define TIME_MAX 1000
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>

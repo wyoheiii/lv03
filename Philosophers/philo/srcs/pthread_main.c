@@ -1,25 +1,43 @@
 #include "philo.h"
-bool check_eat_count(t_philo *philo)
+static bool check_eat_count(t_philo *philo)
 {
-    size_T i;
+    int i;
+    int cnt;
     i = 0;
+    cnt = 0;
     while(i < philo->d->philo_num)
     {
-        if(philo)
+        if(philo->d->philo[i].eat_count >= philo->d->max_eat_num)
+        {
+            cnt++;
+            if (cnt == philo->d->max_eat_num)
+                return(false);
+        }
+        i++;
     }
+    return (true);
 }
+// static bool check_eat_count(t_philo *philo)
+// {
+//     if (philo->eat_count == philo->d->max_eat_num)
+//         return (false);
+//     return(true);
+// }
+
 void *philo_table(void *p)
 {
     //飯　死ぬ　寝る　考える　ゲットタイムつける
     t_philo *philo;
     philo = p;
-    printf("philo_num%d\n",philo->num);
+    //printf("philo_num%ld\n",philo->num);
     if((philo->start_time = get_time()) == false)
         return(NULL);
+    if (philo->num % 2 == 0)
+        usleep(philo->d->eat_time);
     while(1)
     {
-        //if(!philo_eat_beefbowl(philo))
-        //    break;
+        if(!philo_eat_beefbowl(philo))
+            break;
         if(!check_eat_count(philo))
             break;
         if(!philo_sleep(philo))
@@ -31,7 +49,8 @@ void *philo_table(void *p)
 }
 bool thread_main(t_data *data)
 {
-    size_t i;
+    int i;
+    int j;
     i = 0;
     
     while(i < data->philo_num)
@@ -40,12 +59,14 @@ bool thread_main(t_data *data)
             return(print_error("create error\n"));
         i++;
     }
-    i = 0;
-    while(i < data->philo_num)
+    j = 0;
+    while(j < data->philo_num)
     {
-        if(pthread_join(data->philo[i].thread, NULL) != 0)
+
+        if(pthread_join(data->philo[j].thread, NULL) != 0)
             return(print_error("join error\n"));
-        i++;
+        j++;
     }
+    printf("threadowari\n");
     return (true);
 }
