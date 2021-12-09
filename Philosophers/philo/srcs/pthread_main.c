@@ -39,7 +39,7 @@ void *philo_table(void *p)
             break;
         if(philo->d->end_flag || !philo_sleep(philo))
             break;
-         if(philo->d->end_flag||!philo_think(philo))
+        if(philo->d->end_flag || !philo_think(philo))
             break;
     }
     return (NULL);

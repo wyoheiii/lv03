@@ -16,8 +16,8 @@ typedef struct s_philo
     //pthread_mutex_t l_fork;
     //pthread_mutex_t r_fork;
     t_data *d;
-
 } t_philo;
+
 typedef struct s_data
 {
     int philo_num;
@@ -28,8 +28,10 @@ typedef struct s_data
     int fork_num;
     int end_flag;
     pthread_mutex_t *fork;
+    pthread_mutex_t  common_protect;
     pthread_t count_eat_monitor;
     pthread_t starvation_monitor;
+
     t_philo *philo;
 
 } t_data;

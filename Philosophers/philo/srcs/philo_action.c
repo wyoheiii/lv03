@@ -13,6 +13,7 @@ bool print_action(t_philo *p, int  action)
     
     if (!p->d->end_flag)
     {
+        pthread_mutex_lock(&p->d->common_protect);
         time = get_time();
         if (action == FORK)
              printf("%ld %d has taken a fork\n",time,p->num);
@@ -26,25 +27,59 @@ bool print_action(t_philo *p, int  action)
             printf("%ld %d is sleeping\n",time, p->num);
         else if (action == THINK)
             printf("%ld %d is thinking\n",time, p->num);
+        pthread_mutex_unlock(&p->d->common_protect);
         return(true);
     }
     return(false);
 }
 
+// bool philo_eat_beefbowl(t_philo *p)
+// {
+//     if(!p->d->end_flag)
+//         pthread_mutex_lock(&p->d->fork[p->r_fork]);
+//     if(!print_action(p, FORK))
+//         return (false);
+//     if(!p->d->end_flag)
+//         pthread_mutex_lock(&p->d->fork[p->l_fork]);
+//     if(!print_action(p, FORK))
+//         return (false);
+//     if(!print_action(p, EAT))
+//         return(false);
+//     if(!p->d->end_flag)
+//         usleep(p->d->eat_time);
+//     if(!p->d->end_flag)
+//         pthread_mutex_unlock(&p->d->fork[p->r_fork]);
+//     if(!p->d->end_flag)
+//         pthread_mutex_unlock(&p->d->fork[p->l_fork]);
+    
+//     return(true);
+// }
+static void one_philo(t_philo *p)
+{
+    pthread_mutex_lock(&p->d->fork[p->r_fork]);
+    if(!print_action(p, FORK))
+        return ;
+    while(!p->d->end_flag)
+        usleep(100);
+}
 bool philo_eat_beefbowl(t_philo *p)
 {
+    if (p->d->philo_num == 1)
+    {
+        one_philo(p);
+        return(false);
+    }
     pthread_mutex_lock(&p->d->fork[p->r_fork]);
     if(!print_action(p, FORK))
         return (false);
     pthread_mutex_lock(&p->d->fork[p->l_fork]);
     if(!print_action(p, FORK))
         return (false);
-    if(!print_action(p,EAT))
+    if(!print_action(p, EAT))
         return(false);
     usleep(p->d->eat_time);
     pthread_mutex_unlock(&p->d->fork[p->r_fork]);
     pthread_mutex_unlock(&p->d->fork[p->l_fork]);
-    
     return(true);
 }
 bool philo_sleep(t_philo    *philo)

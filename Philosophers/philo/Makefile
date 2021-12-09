@@ -7,7 +7,7 @@ OBJS		=   $(ADDSRCS:.c=.o)
 CC				= gcc
 RM				= rm -f
 CFLAGS			= -Wall -Wextra -Werror -I. -fsanitize=thread
-PFLAGS			= -g -pthread 
+PFLAGS			= -g -pthread
 NAME			= philo
 #-fsanitize=thread
 all:			$(NAME)
