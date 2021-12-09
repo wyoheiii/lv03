@@ -1,22 +1,22 @@
 #include "philo.h"
-static bool check_eat_count(t_philo *philo)
-{
-    int i;
-    int cnt;
-    i = 0;
-    cnt = 0;
-    while(i < philo->d->philo_num)
-    {
-        if(philo->d->philo[i].eat_count >= philo->d->max_eat_num)
-        {
-            cnt++;
-            if (cnt == philo->d->max_eat_num)
-                return(false);
-        }
-        i++;
-    }
-    return (true);
-}
+// static bool check_eat_count(t_philo *philo)
+// {
+//     int i;
+//     int cnt;
+//     i = 0;
+//     cnt = 0;
+//     while(i < philo->d->philo_num)
+//     {
+//         if(philo->d->philo[i].eat_count >= philo->d->max_eat_num)
+//         {
+//             cnt++;
+//             if (cnt == philo->d->max_eat_num)
+//                 return(false);
+//         }
+//         i++;
+//     }
+//     return (true);
+// }
 // static bool check_eat_count(t_philo *philo)
 // {
 //     if (philo->eat_count == philo->d->max_eat_num)
@@ -26,23 +26,20 @@ static bool check_eat_count(t_philo *philo)
 
 void *philo_table(void *p)
 {
+    //mutexで競合しないようにする.
     //飯　死ぬ　寝る　考える　ゲットタイムつける
     t_philo *philo;
     philo = p;
-    //printf("philo_num%ld\n",philo->num);
-    if((philo->start_time = get_time()) == false)
-        return(NULL);
+    philo->last_eat_time = get_time();
     if (philo->num % 2 == 0)
-        usleep(philo->d->eat_time);
+        usleep(philo->d->eat_time -100);
     while(1)
     {
-        if(!philo_eat_beefbowl(philo))
+        if(philo->d->end_flag || !philo_eat_beefbowl(philo))
             break;
-        if(!check_eat_count(philo))
+        if(philo->d->end_flag || !philo_sleep(philo))
             break;
-        if(!philo_sleep(philo))
-            break;
-         if(!philo_think(philo))
+         if(philo->d->end_flag||!philo_think(philo))
             break;
     }
     return (NULL);
@@ -59,6 +56,11 @@ bool thread_main(t_data *data)
             return(print_error("create error\n"));
         i++;
     }
+
+    if(pthread_create(&data->count_eat_monitor, NULL, &eat_monitor, data) != 0)
+        return(print_error("create error\n"));
+    if(pthread_create(&data->starvation_monitor, NULL, &dead_monitor, data) != 0)
+        return(print_error("create error\n"));
     j = 0;
     while(j < data->philo_num)
     {
@@ -67,6 +69,9 @@ bool thread_main(t_data *data)
             return(print_error("join error\n"));
         j++;
     }
-    printf("threadowari\n");
+    if(pthread_join(data->count_eat_monitor, NULL) != 0)
+            return(print_error("join error\n"));
+    if(pthread_join(data->starvation_monitor, NULL) != 0)
+            return(print_error("join error\n"));
     return (true);
 }

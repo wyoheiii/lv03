@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: watanabeyouhei <watanabeyouhei@student.    +#+  +:+       +#+        */
+/*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 18:52:41 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/05 17:15:24 by watanabeyou      ###   ########.fr       */
+/*   Updated: 2021/12/09 15:36:04 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int main (int ac, char **av)
         if (!init(ac, av, &data))
             return (FAILURE);
         if (!thread_main(&data))
+        {
+            god_free(&data);
             return (FAILURE);
+        }
+        god_free(&data);
         return(SUCCESS);
     }
     //god_free(&data);

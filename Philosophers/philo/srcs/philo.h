@@ -4,6 +4,10 @@
 # define SUCCESS 1
 # define FAILURE 0
 #define TIME_MAX 1000
+#define FORK 1
+#define EAT 2
+#define SLEEP 3
+#define THINK 4
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,5 +27,6 @@ bool thread_main(t_data *data);
 bool philo_eat_beefbowl(t_philo *philo);
 bool philo_sleep(t_philo *philo);
 bool philo_think(t_philo *philo);
-
+void *eat_monitor(void *d);
+void *dead_monitor(void *d);
 #endif

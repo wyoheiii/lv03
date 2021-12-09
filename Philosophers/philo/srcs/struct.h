@@ -7,7 +7,7 @@ typedef struct s_philo
 {
     int eat_count;
     int num;
-    size_t start_time;
+    //size_t start_time;
     int l_fork;
     int r_fork;
     size_t last_eat_time;
@@ -26,8 +26,12 @@ typedef struct s_data
     size_t sleep_time;
     int max_eat_num;
     int fork_num;
+    int end_flag;
     pthread_mutex_t *fork;
+    pthread_t count_eat_monitor;
+    pthread_t starvation_monitor;
     t_philo *philo;
+
 } t_data;
 
 #endif

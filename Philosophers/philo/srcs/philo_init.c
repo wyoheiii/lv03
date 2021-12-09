@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:25:54 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/07 22:59:22 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/09 14:52:25 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ static bool philo_init(t_data *data)
     while(i < data->philo_num)
     {
         data->philo[i].num = i + 1;
-        data->philo[i].start_time = 0;
+        //data->philo[i].start_time = 0;
         data->philo[i].l_fork = i;
         if(i + 1 == data->philo_num)
-             data->philo[i].r_fork = 1; // (i + 1) % philo_num?
+             data->philo[i].r_fork = 0; // (i + 1) % philo_num?
         else
             data->philo[i].r_fork = i + 1;
+        //data->philo[i].r_fork = (i + 1) % data->philo_num;
         data->philo[i].d = data;
         data->philo[i].eat_count = 0;
         //data->philo[i].l_fork = data->fork[i];
@@ -99,7 +100,9 @@ bool    init(int ac, char **av, t_data *data)
     data->die_time = atooooi(av[2]);
     data->eat_time = atooooi(av[3]) * 1000;
     data->sleep_time = atooooi(av[4]) * 1000;
+    data->end_flag = 0;
     if(!init2(ac, data))
         return(false);
+    
     return(true);
 }

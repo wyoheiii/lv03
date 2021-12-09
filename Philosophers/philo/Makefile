@@ -1,15 +1,15 @@
 SRCS = main.c util.c av_check.c philo_init.c god_free.c pthread_main.c \
-		philo_action.c
+		philo_action.c monitor.c
 SRCSD = ./srcs/
 
 ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
 OBJS		=   $(ADDSRCS:.c=.o)
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I.
-PFLAGS			= -g -pthread
+CFLAGS			= -Wall -Wextra -Werror -I. -fsanitize=thread
+PFLAGS			= -g -pthread 
 NAME			= philo
-
+#-fsanitize=thread
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
