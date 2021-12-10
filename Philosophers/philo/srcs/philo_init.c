@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:25:54 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/10 14:57:54 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/10 16:45:57 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,12 @@ bool    init(int ac, char **av, t_data *data)
         data->max_eat_num = atooooi(av[5]);
     else
         data->max_eat_num = 0;
-    data->philo_num = atooooi(av[1]);
+    data->philo_num = (int)atooooi(av[1]);
     data->die_time = atooooi(av[2]);
-    data->eat_time = atooooi(av[3]) * 1000;
-    data->sleep_time = atooooi(av[4]) * 1000;
+    data->eat_time = atooooi(av[3]);
+    data->sleep_time = atooooi(av[4]);
     data->end_flag = 0;
     data->philos_eat_count = 0;
-    //printf("a\n");
     if(pthread_mutex_init(&data->common_protect, NULL) != 0)
         return(print_error("mutex_init error\n"));
     if(!init2(ac, data))

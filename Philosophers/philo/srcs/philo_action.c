@@ -27,7 +27,6 @@ bool print_action(t_philo *p, int  action)
             if(p->eat_count == p->d->max_eat_num)
             {
                 p->d->philos_eat_count++;
-
                 if(p->d->philos_eat_count == p->d->philo_num)
                    p->d->end_flag = 1;
             }
@@ -80,23 +79,25 @@ bool philo_eat_beefbowl(t_philo *p)
         return(false);
     }
     pthread_mutex_lock(&p->d->fork[p->r_fork]);
-    if(!print_action(p, FORK))
-        return (false);
+    print_action(p, FORK);
     pthread_mutex_lock(&p->d->fork[p->l_fork]);
-    if(!print_action(p, FORK))
-        return (false);
-    if(!print_action(p, EAT))
-        return(false);
-    usleep(p->d->eat_time);
+    print_action(p, FORK);
+    print_action(p, EAT);
+    while((get_time() - p->last_eat_time) <= p->d->eat_time && !p->d->end_flag)
+        usleep(100);
     pthread_mutex_unlock(&p->d->fork[p->r_fork]);
     pthread_mutex_unlock(&p->d->fork[p->l_fork]);
     return(true);
 }
-bool philo_sleep(t_philo    *philo)
+bool philo_sleep(t_philo    *p)
 {
-    if (!print_action(philo, SLEEP))
+    size_t sleep;
+
+    if (!print_action(p, SLEEP))
         return(false);
-    usleep(philo->d->sleep_time);
+    sleep = get_time();
+    while((get_time() - sleep) <= p->d->sleep_time && !p->d->end_flag)
+        usleep(100);
     return(true);
 }
 
@@ -104,6 +105,6 @@ bool philo_think(t_philo *philo)
 {
     if (!print_action(philo, THINK))
         return(false);
-    usleep(1000);
+    usleep(100);
     return(true);
 }

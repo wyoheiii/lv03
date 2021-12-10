@@ -44,7 +44,7 @@ void *dead_monitor(void *d)
         while(i < data->philo_num)
         {
             pthread_mutex_lock(&data->common_protect);
-            if ((get_time() - data->philo[i].last_eat_time) >= data->die_time && !data->end_flag)
+            if ((get_time() - data->philo[i].last_eat_time) > data->die_time && !data->end_flag)
             {
                 data->end_flag = 1;
                 printf("%ld %d died\n",get_time(), data->philo[i].num);
@@ -52,9 +52,9 @@ void *dead_monitor(void *d)
                 break ;
             }
             pthread_mutex_unlock(&data->common_protect);
-            usleep(30);
             i++;
         }
+        usleep(100);
     }
     return(NULL);
 }
