@@ -6,11 +6,21 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:45:48 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/10 18:16:45 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/10 21:58:55 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+size_t	ft_strlen(const char	*s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
 
 static int	ft_isdigit(int	c)
 {
