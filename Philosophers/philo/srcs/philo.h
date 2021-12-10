@@ -29,4 +29,5 @@ bool philo_sleep(t_philo *philo);
 bool philo_think(t_philo *philo);
 void *eat_monitor(void *d);
 void *dead_monitor(void *d);
+//bool check_eat_count(t_philo *philo);
 #endif

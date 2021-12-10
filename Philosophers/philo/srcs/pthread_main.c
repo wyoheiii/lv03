@@ -11,11 +11,14 @@
 //         {
 //             cnt++;
 //             if (cnt == philo->d->max_eat_num)
-//                 return(false);
+//             {
+//                 philo->d->end_flag = 1;
+//                 return(true);
+//             }
 //         }
 //         i++;
 //     }
-//     return (true);
+//     return (false);
 // }
 // static bool check_eat_count(t_philo *philo)
 // {
@@ -57,8 +60,8 @@ bool thread_main(t_data *data)
         i++;
     }
 
-    if(pthread_create(&data->count_eat_monitor, NULL, &eat_monitor, data) != 0)
-        return(print_error("create error\n"));
+    //if(pthread_create(&data->count_eat_monitor, NULL, &eat_monitor, data) != 0)
+    //    return(print_error("create error\n"));
     if(pthread_create(&data->starvation_monitor, NULL, &dead_monitor, data) != 0)
         return(print_error("create error\n"));
     j = 0;
@@ -69,8 +72,8 @@ bool thread_main(t_data *data)
             return(print_error("join error\n"));
         j++;
     }
-    if(pthread_join(data->count_eat_monitor, NULL) != 0)
-            return(print_error("join error\n"));
+    //if(pthread_join(data->count_eat_monitor, NULL) != 0)
+    //        return(print_error("join error\n"));
     if(pthread_join(data->starvation_monitor, NULL) != 0)
             return(print_error("join error\n"));
     return (true);

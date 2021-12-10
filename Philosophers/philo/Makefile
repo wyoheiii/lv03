@@ -6,7 +6,7 @@ ADDSRCS = $(addprefix $(SRCSD),$(SRCS))
 OBJS		=   $(ADDSRCS:.c=.o)
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I. -fsanitize=thread
+CFLAGS			= -Wall -Wextra -Werror -I. #-fsanitize=address#-fsanitize=thread
 PFLAGS			= -g -pthread
 NAME			= philo
 #-fsanitize=thread

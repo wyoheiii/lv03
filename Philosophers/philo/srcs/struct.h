@@ -27,9 +27,10 @@ typedef struct s_data
     int max_eat_num;
     int fork_num;
     int end_flag;
+    int philos_eat_count;
     pthread_mutex_t *fork;
     pthread_mutex_t  common_protect;
-    pthread_t count_eat_monitor;
+    //pthread_t count_eat_monitor;
     pthread_t starvation_monitor;
 
     t_philo *philo;

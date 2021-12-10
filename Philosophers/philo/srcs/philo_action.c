@@ -9,27 +9,37 @@
 
 bool print_action(t_philo *p, int  action)
 {
-    size_t time ;
-    
+
+    pthread_mutex_lock(&p->d->common_protect);
     if (!p->d->end_flag)
     {
-        pthread_mutex_lock(&p->d->common_protect);
-        time = get_time();
         if (action == FORK)
-             printf("%ld %d has taken a fork\n",time,p->num);
+            printf("%ld %d has taken a fork\n",get_time(),p->num);
         else if (action == EAT)
         {
-            printf("%ld %d is eating\n",time,p->num);
-            p->last_eat_time = time;
+            printf("%ld %d is eating\n",get_time(),p->num);
+            p->last_eat_time = get_time();
             p->eat_count++;
+            // printf("eat_count :%d\n",);
+            // printf("max_eat_num :%d\n",);
+            // printf("philo_num :%d\n",);
+            //  printf("philo_eat_count :%d\n",p->);
+            if(p->eat_count == p->d->max_eat_num)
+            {
+                p->d->philos_eat_count++;
+
+                if(p->d->philos_eat_count == p->d->philo_num)
+                   p->d->end_flag = 1;
+            }
         }
         else if (action == SLEEP)
-            printf("%ld %d is sleeping\n",time, p->num);
+            printf("%ld %d is sleeping\n",get_time(), p->num);
         else if (action == THINK)
-            printf("%ld %d is thinking\n",time, p->num);
+            printf("%ld %d is thinking\n",get_time(), p->num);
         pthread_mutex_unlock(&p->d->common_protect);
         return(true);
     }
+    pthread_mutex_unlock(&p->d->common_protect);
     return(false);
 }
 
