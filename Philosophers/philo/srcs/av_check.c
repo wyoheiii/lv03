@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:45:48 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/06 16:21:34 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/10 18:16:45 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,35 @@ static int	ft_isdigit(int	c)
 
 static bool	check_args(char	*str)
 {
-	size_t	i;
-	int		flag;
+	size_t		i;
+	int			flag;
 
 	i = 0;
 	if (ft_strlen(str) > 11)
-		return(false);
+		return (false);
 	if (str[0] == '-')
-			return(false);
+		return (false);
 	if (str[0] == '0' && str[1] != '\0')
-		return(false);
+		return (false);
 	while (str[i] != '\0')
 	{
 		flag = ft_isdigit(str[i]);
 		if (flag == -1)
-			return(false);
+			return (false);
 		i++;
 	}
-	return(SUCCESS);
+	return (SUCCESS);
 }
 
 bool	av_check(int ac, char **av)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < ac)
 	{
 		if (!check_args(av[i]))
-			return(print_error("args string error\n"));
+			return (print_error("args string error\n"));
 		i++;
 	}
 	return (true);
