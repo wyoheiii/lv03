@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:45 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/10 18:54:31 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/11 19:52:49 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	av_check(int ac, char **av);
 size_t	atooooi(const char	*str);
 size_t	ft_strlen(const char	*s);
 void	god_free(t_data *data);
-int		print_error(char *error);
+bool	print_error(char *error);
 size_t	get_time(void);
 bool	thread_main(t_data *data);
 bool	philo_eat_beefbowl(t_philo *philo);

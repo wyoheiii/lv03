@@ -6,15 +6,15 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/15 17:45:32 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/10 18:30:40 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/11 20:25:13 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-int	print_error(char *error)
+bool	print_error(char *error)
 {
 	printf("%s", error);
-	return (FAILURE);
+	return (false);
 }
 
 void	god_free(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:25:54 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/10 18:39:19 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/11 20:29:03 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	idx_check(t_data *data, int ac)
 			|| data->die_time == FAILURE \
 			|| data->eat_time == FAILURE \
 			|| data->sleep_time == FAILURE)
-		return (print_error("aargs num error\n"));
+		return (print_error("args num error\n"));
 	return (true);
 }
 
@@ -66,10 +66,7 @@ static bool	philo_init(t_data *data)
 static bool	init2(int ac, t_data *data)
 {
 	if (!idx_check(data, ac))
-	{
-		god_free(data);
 		return (false);
-	}
 	if (!philo_init(data))
 	{
 		god_free(data);
@@ -95,6 +92,8 @@ bool	init(int ac, char **av, t_data *data)
 	data->sleep_time = atooooi(av[4]);
 	data->end_flag = 0;
 	data->philos_eat_count = 0;
+	data->fork = NULL;
+	data->philo = NULL;
 	if (pthread_mutex_init(&data->common_protect, NULL) != 0)
 		return (print_error("mutex_init error\n"));
 	if (!init2(ac, data))
