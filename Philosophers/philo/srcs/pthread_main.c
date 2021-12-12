@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:49 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/10 18:33:52 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:40:46 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*philo_table(void *p)
 	philo = p;
 	philo->last_eat_time = get_time();
 	if (philo->num % 2 == 0)
-		usleep(philo->d->eat_time - 100);
+		usleep((philo->d->eat_time * 1000) - 200);
 	while (1)
 	{
 		if (philo->d->end_flag || !philo_eat_beefbowl(philo))

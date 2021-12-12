@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:39 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/12 14:38:08 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/12 15:41:04 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ bool	philo_eat_beefbowl(t_philo *p)
 		return (false);
 	}
 	pthread_mutex_lock(&p->d->fork[p->r_fork]);
-	if(!print_action(p, FORK))
+	if (!print_action(p, FORK))
 	{
 		pthread_mutex_unlock(&p->d->fork[p->r_fork]);
-		return(false);
+		return (false);
 	}
 	pthread_mutex_lock(&p->d->fork[p->l_fork]);
 	print_action(p, FORK);
