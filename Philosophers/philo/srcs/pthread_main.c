@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:49 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/12 15:40:46 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/14 12:55:45 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@ void	*philo_table(void *p)
 	t_philo	*philo;
 
 	philo = p;
+	pthread_mutex_lock(&philo->d->common_protect);
 	philo->last_eat_time = get_time();
+	pthread_mutex_unlock(&philo->d->common_protect);
 	if (philo->num % 2 == 0)
 		usleep((philo->d->eat_time * 1000) - 200);
 	while (1)
 	{
-		if (philo->d->end_flag || !philo_eat_beefbowl(philo))
+		if (!philo_eat_beefbowl(philo))
 			break ;
-		if (philo->d->end_flag || !philo_sleep(philo))
+		if (!philo_sleep(philo))
 			break ;
-		if (philo->d->end_flag || !philo_think(philo))
+		if (!philo_think(philo))
 			break ;
 	}
 	return (NULL);
