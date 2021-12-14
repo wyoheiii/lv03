@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:34 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/14 14:29:13 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:36:11 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	*dead_monitor(void *d)
 		usleep(300);
 		if (starvation_check(data))
 			return (NULL);
-		
 	}
 	return (NULL);
 }

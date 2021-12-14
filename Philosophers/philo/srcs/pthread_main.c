@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:49 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/14 14:28:56 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/14 14:36:20 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	*philo_table(void *p)
 	t_philo	*philo;
 
 	philo = p;
-
 	if (philo->num % 2 == 0)
 		usleep((philo->d->eat_time * 1000) - 200);
 	while (1)
