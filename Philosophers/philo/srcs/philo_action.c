@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:39 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/14 14:33:09 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/16 11:59:42 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ bool	philo_eat_beefbowl(t_philo *p)
 	}
 	pthread_mutex_lock(&p->d->fork[p->l_fork]);
 	print_action(p, FORK);
-	usleep(200);
+	usleep(300);
 	print_action(p, EAT);
 	while ((get_time() - p->last_eat_time) <= p->d->eat_time)
-		usleep(300);
+		usleep(100);
 	pthread_mutex_unlock(&p->d->fork[p->r_fork]);
 	pthread_mutex_unlock(&p->d->fork[p->l_fork]);
 	return (true);

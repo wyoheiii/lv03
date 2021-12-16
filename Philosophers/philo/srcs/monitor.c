@@ -6,7 +6,7 @@
 /*   By: wyohei <wyohei@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 18:11:34 by wyohei            #+#    #+#             */
-/*   Updated: 2021/12/14 14:36:11 by wyohei           ###   ########.fr       */
+/*   Updated: 2021/12/16 11:57:06 by wyohei           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static bool	starvation_check(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_lock(&data->common_protect);
 	while (i < data->philo_num)
 	{
-		pthread_mutex_lock(&data->common_protect);
 		if (data->end_flag)
 		{
 			pthread_mutex_unlock(&data->common_protect);
